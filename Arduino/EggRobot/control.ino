@@ -2,7 +2,7 @@ float pidControl(float input, float target) {
   /* PID AND MOTOR CONSTANTS */
   const float Kp = 1.0;
   const float Ki = 0.5;
-  const float Kd = 0.1;
+  const float Kd = 0.0001;
 
   /* STATIC VARIABLES */
   static unsigned long prev_time_ms;

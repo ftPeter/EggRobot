@@ -1,10 +1,12 @@
-
+/* EggRobot Version 1.5
+ *
+ * by Peter F. Klemperer
+ * April 30, 2024
+ */
 
 #include <Servo.h>
 
 Servo pendulumServo; 
-
-int pos = 90;    // variable to store the servo position
 
 #include <Wire.h>
 #include <LSM6.h>
@@ -15,10 +17,8 @@ LIS3MDL mag;
 
 char report[160];
 
-void setup() {
-  pendulumServo.attach(0);
-
-    Serial.begin(9600);
+void initializeIMU() {
+  // Initialize the IMU and Magnetometer
   Wire.begin();
 
   if (!imu.init())
@@ -36,22 +36,38 @@ void setup() {
   mag.enableDefault();
 }
 
-// provide a position -128 to 127 inclusive
+void setup() {
+  initializeIMU();
+  delay(100); // give the IMU time before the servo turns on
+
+  // attach the servo
+  pendulumServo.attach(0);
+  delay(100);
+
+  // Initialize serial for debugging communication
+  Serial.begin(9600);
+}
+
+// positionServo 
+// takes a position target for
+// pendulum in degrees from 0 (down)
 // and then the servo is positioned within 
 // it's allowed range
-void positionServo(int position) {
+void positionServo(float position) {
   int MIN = 65;
   int MAX = 125;
 
   int scaledP = map(position, -180, 180, 180, 0);
   scaledP = constrain(scaledP, MIN, MAX);
 
-  Serial.println(scaledP);
-
   // what is the range of pendulumServo? 0-180
   pendulumServo.write(scaledP);
+  Serial.println(scaledP);
 }
 
+// getRotationPose
+// reads the imu and (roughly) returns the
+// robot's lean angle (0 down)
 int getRotationPose() {
   imu.read();
   mag.read();
@@ -67,19 +83,29 @@ int getRotationPose() {
 }
 
 void loop() {
+  float targetAngle = planner();
 
-
-
-
-  int scaledRotation = getRotationPose();
-  float targetAngle = pidControl( scaledRotation, 0.0);
+  // average several IMU readings
+  // before updating the servo
+  int filter = 0;
+  for(int c = 0; c < 10; c++) {
+    filter += getRotationPose();
+    delay(5);
+  }
+  int scaledRotation = filter / 10;
+  
+  // calculate the target pendulum angle
+  float pendulumAngle = pidControl( scaledRotation, targetAngle);
 
   Serial.print(scaledRotation);
   Serial.print("\t");
   Serial.print(targetAngle);
   Serial.print("\t");
+  Serial.print(pendulumAngle);
+  Serial.print("\t");
 
-  positionServo(targetAngle);
+  // command the pendulum
+  positionServo(pendulumAngle);
 
-  delay(100);
+  // delay(100);
 }
