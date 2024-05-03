@@ -54,10 +54,12 @@ void setup() {
 // and then the servo is positioned within 
 // it's allowed range
 void positionServo(float position) {
-  int MIN = 65;
-  int MAX = 125;
+  const int MIN = 65;
+  const int MAX = 125;
+  const int MIDDLE_OFFSET = 99 - 90;
 
   int scaledP = map(position, -180, 180, 180, 0);
+  scaledP += MIDDLE_OFFSET;
   scaledP = constrain(scaledP, MIN, MAX);
 
   // what is the range of pendulumServo? 0-180
@@ -83,6 +85,7 @@ int getRotationPose() {
 }
 
 void loop() {
+  // consult the planner for the target lean angle
   float targetAngle = planner();
 
   // average several IMU readings

@@ -1,10 +1,16 @@
+/* PID AND MOTOR CONSTANTS */
+const float KP = 0.5;
+const float KI = 0.2;
+const float KD = 0.01;
+
 float pidControl(float input, float target) {
-  /* PID AND MOTOR CONSTANTS */
-  const float Kp = 1.0;
-  const float Ki = 0.5;
-  const float Kd = 0.0001;
+  // necessary to support soft-start
+  float Kp = KP;
+  float Ki = KI;
+  float Kd = KD;
 
   /* STATIC VARIABLES */
+  static bool first_run = true;
   static unsigned long prev_time_ms;
   static float prev_error;
   static float integral;
@@ -20,6 +26,17 @@ float pidControl(float input, float target) {
   /* PID CALCULATIONS*/
   integral  +=  (error * duration_s);
   float derivative  = (error - prev_error) / duration_s;
+
+  /* SOFTEN-START */
+  const float soft_start_s = 2000.0;
+  if( current_time_ms < soft_start_s ) {
+    Serial.print("current_time_ms\t");
+    Serial.println(current_time_ms);
+    Kp = Kp * current_time_ms / soft_start_s ;
+    Ki = 0;
+    Kd = 0;
+    integral = 0;
+  }
 
   float output  = (Kp * error  + Ki * integral  + Kd * derivative);
 
