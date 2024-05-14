@@ -1,6 +1,8 @@
+// for paper, pid
+
 /* PID AND MOTOR CONSTANTS */
 const float KP = 0.5;
-const float KI = 0.2;
+const float KI = 0.2; 
 const float KD = 0.01;
 
 float pidControl(float input, float target) {

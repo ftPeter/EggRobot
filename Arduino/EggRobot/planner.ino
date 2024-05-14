@@ -17,12 +17,12 @@
 // how long in each state
 // number of states
 // array of target angles in degrees with 0 as down
-const int TIME_IN_STATE_SEC = 10;
+const int TIME_IN_STATE_SEC = 30;
 const int NUM_STATES = 2;
-const float TARGET_ANGLE_STATES[2] = {30.0, -30.0};
+const float TARGET_ANGLE_STATES[2] = {35.0, -35.0};
 
 // Configure damping factor
-const float DAMP_DEG_PER_SEC = 10;
+const float DAMP_DEG_PER_SEC = 5;
 
 int _planner_state(float time_s) {
   return ((int) time_s / TIME_IN_STATE_SEC) % NUM_STATES;
