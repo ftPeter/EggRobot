@@ -37,6 +37,8 @@ void initializeIMU() {
 }
 
 void setup() {
+  animate_setup();
+
   initializeIMU();
   delay(100); // give the IMU time before the servo turns on
 
@@ -56,7 +58,7 @@ void setup() {
 void positionServo(float position) {
   const int MIN = 65;
   const int MAX = 125;
-  const int MIDDLE_OFFSET = 99 - 90;
+  const int MIDDLE_OFFSET = 96 - 90;
 
   int scaledP = map(position, -180, 180, 180, 0);
   scaledP += MIDDLE_OFFSET;
@@ -64,6 +66,7 @@ void positionServo(float position) {
 
   // what is the range of pendulumServo? 0-180
   pendulumServo.write(scaledP);
+  Serial.print("positionServo ");
   Serial.println(scaledP);
 }
 
@@ -86,7 +89,7 @@ int getRotationPose() {
 
 void loop() {
   // consult the planner for the target lean angle
-  float targetAngle = planner();
+  float targetAngle = 0; //planner();
 
   // average several IMU readings
   // before updating the servo
@@ -98,16 +101,21 @@ void loop() {
   int scaledRotation = filter / 10;
   
   // calculate the target pendulum angle
-  float pendulumAngle = pidControl( scaledRotation, targetAngle);
+  float bodyAngle = pidControl( scaledRotation, targetAngle);
 
+  Serial.print("scaledRotation ");
   Serial.print(scaledRotation);
-  Serial.print("\t");
+  Serial.print("\ttargetAngle ");
   Serial.print(targetAngle);
-  Serial.print("\t");
-  Serial.print(pendulumAngle);
-  Serial.print("\t");
+  Serial.print("\tbodyAngle ");
+  Serial.print(bodyAngle);
+  
 
   // command the pendulum
+  float pendulumAngle = translateAngle(bodyAngle);
+  Serial.print("\tpendulumAngle ");
+  Serial.print(pendulumAngle);
+  Serial.print("\t");
   positionServo(pendulumAngle);
 
   // delay(100);

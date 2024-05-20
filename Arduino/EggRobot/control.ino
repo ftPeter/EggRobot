@@ -1,9 +1,9 @@
 // for paper, pid
 
 /* PID AND MOTOR CONSTANTS */
-const float KP = 0.5;
-const float KI = 0.2; 
-const float KD = 0.01;
+const float KP = 1.4; // 0.5;
+const float KI = 0.0; // 0.2;
+const float KD = 0.01; // 0.01;
 
 float pidControl(float input, float target) {
   // necessary to support soft-start
@@ -15,6 +15,7 @@ float pidControl(float input, float target) {
   static bool first_run = true;
   static unsigned long prev_time_ms;
   static float prev_error;
+  static float prev_target;
   static float integral;
 
   /* TIME DURATION SINCE LAST UPDATE */
@@ -26,7 +27,11 @@ float pidControl(float input, float target) {
   float error  = target - input;
  
   /* PID CALCULATIONS*/
-  integral  +=  (error * duration_s);
+  if(prev_target != target) {
+    integral = 0;
+  } else {
+    integral  +=  (error * duration_s);
+  }
   float derivative  = (error - prev_error) / duration_s;
 
   /* SOFTEN-START */
@@ -44,6 +49,7 @@ float pidControl(float input, float target) {
 
   // update previous values
   prev_time_ms = current_time_ms;
+  prev_target = target;
   prev_error  = error;
 
   return output;
