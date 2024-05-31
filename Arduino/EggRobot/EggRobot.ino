@@ -40,7 +40,7 @@ void setup() {
   animate_setup();
 
   initializeIMU();
-  delay(100); // give the IMU time before the servo turns on
+  delay(100); // give the IMU time before the servo turns on, power spike from servo or something...
 
   // attach the servo
   pendulumServo.attach(0);
@@ -89,7 +89,7 @@ int getRotationPose() {
 
 void loop() {
   // consult the planner for the target lean angle
-  float targetAngle = 0; //planner();
+  float targetAngle = planner(); //0
 
   // average several IMU readings
   // before updating the servo
