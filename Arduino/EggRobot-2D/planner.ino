@@ -96,3 +96,28 @@ float planner() {
 
   return target_angle;
 }
+
+void closedLoopWalk() {
+  positionPendulum(0.0);
+  positionLeftLeg(0.0);
+  positionRightLeg(0.0);
+  delay(2000);
+
+  positionPendulum(30.0);
+  delay(5000);
+
+  positionRightLeg(-40.0);
+  delay(1000);
+
+  positionPendulum(-30.0);
+  delay(5000);
+
+  positionRightLeg(0.0);
+  delay(1000);
+
+  positionLeftLeg(40.0);
+  delay(1000);
+
+  // all done, wait 10 seconds;
+  //while(true) {;}
+}

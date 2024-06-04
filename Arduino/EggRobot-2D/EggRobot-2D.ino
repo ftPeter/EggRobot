@@ -54,26 +54,6 @@ void setup() {
   Serial.begin(9600);
 }
 
-// positionServo 
-// takes a position target for
-// pendulum in degrees from 0 (down)
-// and then the servo is positioned within 
-// it's allowed range
-void positionServo(float position) {
-  const int MIN = 65;
-  const int MAX = 125;
-  const int MIDDLE_OFFSET = 96 - 90;
-
-  int scaledP = map(position, -180, 180, 180, 0);
-  scaledP += MIDDLE_OFFSET;
-  scaledP = constrain(scaledP, MIN, MAX);
-
-  // what is the range of pendulumServo? 0-180
-  pendulumServo.write(scaledP);
-  Serial.print("positionServo ");
-  Serial.println(scaledP);
-}
-
 // getRotationPose
 // reads the imu and (roughly) returns the
 // robot's lean angle (0 down)
@@ -91,15 +71,10 @@ int getRotationPose() {
   return 90 * imu.a.x / 16000;
 }
 
-int pos = 0;
-
 void loop() {
-  // pos = (pos + 1) % 256;
-  pos = 256 / 2;
-  rightLegServo.write(pos);
-  leftLegServo.write(pos);
-  pendulumServo.write(pos);
-  delay(10);
+  // servoTest();
+
+  closedLoopWalk();
 
   // // consult the planner for the target lean angle
   // float targetAngle = planner(); //0
@@ -129,7 +104,7 @@ void loop() {
   // Serial.print("\tpendulumAngle ");
   // Serial.print(pendulumAngle);
   // Serial.print("\t");
-  // positionServo(pendulumAngle);
+  // positionPendulum(pendulumAngle);
 
   // // delay(100);
 }
