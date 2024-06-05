@@ -49,7 +49,7 @@ void positionLeftLeg(float position) {
 
   // what is the range of pendulumServo? 0-180
   leftLegServo.write(scaledP);
-  Serial.print("positionPendulum ");
+  Serial.print("positionLeftLeg ");
   Serial.println(scaledP);
 }
 

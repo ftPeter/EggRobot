@@ -97,26 +97,42 @@ float planner() {
   return target_angle;
 }
 
-void closedLoopWalk() {
+void step() {
+  const int leanAngle = 45.0;
   positionPendulum(0.0);
   positionLeftLeg(0.0);
   positionRightLeg(0.0);
   delay(2000);
 
-  positionPendulum(30.0);
-  delay(5000);
+  positionPendulum(0.0);
+  delay(2000);
+  positionPendulum(leanAngle);
+  delay(2000);
 
-  positionRightLeg(-40.0);
+  positionRightLeg(40.0);
   delay(1000);
 
-  positionPendulum(-30.0);
-  delay(5000);
+  positionPendulum(0.0);
+  delay(2000);
+  positionPendulum(-leanAngle);
+  delay(2000);
 
   positionRightLeg(0.0);
   delay(1000);
 
-  positionLeftLeg(40.0);
+  positionLeftLeg(-40.0);
   delay(1000);
+
+  positionPendulum(0.0);
+  delay(2000);
+  positionPendulum(leanAngle);
+  delay(2000);
+
+  positionLeftLeg(00.0);
+  delay(1000);
+
+  positionPendulum(0.0);
+  delay(2000);
 
   // all done, wait 10 seconds;
   //while(true) {;}

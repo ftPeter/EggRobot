@@ -74,7 +74,9 @@ int getRotationPose() {
 void loop() {
   // servoTest();
 
-  closedLoopWalk();
+  //step();
+
+  serial_control_loop();
 
   // // consult the planner for the target lean angle
   // float targetAngle = planner(); //0
