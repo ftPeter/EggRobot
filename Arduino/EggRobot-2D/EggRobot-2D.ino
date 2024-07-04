@@ -72,6 +72,9 @@ int getRotationPose() {
 }
 
 void loop() {
+  // servoCenter();
+  // servoPositionZero();
+
   // servoTest();
 
   //step();
@@ -108,5 +111,5 @@ void loop() {
   // Serial.print("\t");
   // positionPendulum(pendulumAngle);
 
-  // // delay(100);
+  delay(100);
 }

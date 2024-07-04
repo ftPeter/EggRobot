@@ -1,3 +1,15 @@
+void servoCenter() {
+  leftLegServo.write(90);
+  rightLegServo.write(90);
+  pendulumServo.write(90);
+}
+
+void servoPositionZero() {
+  positionLeftLeg(0.0);
+  positionRightLeg(0.0);
+  positionPendulum(0.0);
+}
+
 void servoTest() {
     // rightLegServo.write(89);
   // leftLegServo.write(120);
@@ -37,7 +49,7 @@ void positionPendulum(float position) {
 // and then the servo is positioned within 
 // it's allowed range
 void positionLeftLeg(float position) {
-  const int MIDDLE = 89;
+  const int MIDDLE = 87;
   const int RANGE = 30;
   const int MIN = MIDDLE - RANGE;
   const int MAX = MIDDLE + RANGE;
