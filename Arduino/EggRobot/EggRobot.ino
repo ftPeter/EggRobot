@@ -88,35 +88,37 @@ int getRotationPose() {
 }
 
 void loop() {
-  // consult the planner for the target lean angle
-  float targetAngle = planner(); //0
+  serial_control_loop();
 
-  // average several IMU readings
-  // before updating the servo
-  int filter = 0;
-  for(int c = 0; c < 10; c++) {
-    filter += getRotationPose();
-    delay(5);
-  }
-  int scaledRotation = filter / 10;
+  // // consult the planner for the target lean angle
+  // float targetAngle = planner(); //0
+
+  // // average several IMU readings
+  // // before updating the servo
+  // int filter = 0;
+  // for(int c = 0; c < 10; c++) {
+  //   filter += getRotationPose();
+  //   delay(5);
+  // }
+  // int scaledRotation = filter / 10;
   
-  // calculate the target pendulum angle
-  float bodyAngle = pidControl( scaledRotation, targetAngle);
+  // // calculate the target pendulum angle
+  // float bodyAngle = pidControl( scaledRotation, targetAngle);
 
-  Serial.print("scaledRotation ");
-  Serial.print(scaledRotation);
-  Serial.print("\ttargetAngle ");
-  Serial.print(targetAngle);
-  Serial.print("\tbodyAngle ");
-  Serial.print(bodyAngle);
+  // Serial.print("scaledRotation ");
+  // Serial.print(scaledRotation);
+  // Serial.print("\ttargetAngle ");
+  // Serial.print(targetAngle);
+  // Serial.print("\tbodyAngle ");
+  // Serial.print(bodyAngle);
   
 
-  // command the pendulum
-  float pendulumAngle = translateAngle(bodyAngle);
-  Serial.print("\tpendulumAngle ");
-  Serial.print(pendulumAngle);
-  Serial.print("\t");
-  positionServo(pendulumAngle);
+  // // command the pendulum
+  // float pendulumAngle = translateAngle(bodyAngle);
+  // Serial.print("\tpendulumAngle ");
+  // Serial.print(pendulumAngle);
+  // Serial.print("\t");
+  // positionServo(pendulumAngle);
 
-  // delay(100);
+  // // delay(100);
 }
