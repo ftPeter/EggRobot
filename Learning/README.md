@@ -3,13 +3,13 @@
 # TODO
 * Brainstorm ideas for simple problems
 * Pick physical problem
-** Draw a block diagram for proposed solution
-** Choose ML tool (pytorch)
-** Choose NN architecture
-** Develop dataset
-** Translate to Arduino
-** How to develop Mujoco environment
-** What are the state variables
+  * Draw a block diagram for proposed solution
+  * Choose ML tool (pytorch)
+  * Choose NN architecture
+  * Develop dataset
+  * Translate to Arduino
+  * How to develop Mujoco environment
+  * What are the state variables
 * Review the mnist example
 
 ---
@@ -25,8 +25,15 @@ In order of probable difficulty:
 ---
 
 # Files in this folder
-## Gymnasium Series
+
+## Light Switch Folder
+
+Files related to my simplest ML solution, the lightswitch.
+
+## GymnasiumTutorials Folder
+
 Files related to the Gymnasium Tutorials
+
 gymnasium_atari.py
 * (Getting Started with OpenAI Gym)[https://blog.paperspace.com/getting-started-with-openai-gym/]
 gymnasium_basic.py
