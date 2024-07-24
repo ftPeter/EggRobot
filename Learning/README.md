@@ -34,21 +34,13 @@ Files related to my simplest ML solution, the lightswitch.
 
 Files related to the Gymnasium Tutorials
 
-gymnasium_atari.py
-* [Getting Started with OpenAI Gym](https://blog.paperspace.com/getting-started-with-openai-gym/)
-gymnasium_basic.py
-* [Basic Usage](https://gymnasium.farama.org/content/basic_usage/)
-gymnasium_blackjack.py - from the Gymnasium Solving Blackjack with Q-Learning Tutorial
-* [Gymnasium Solving Blackjack with Q-Learning Tutorial](https://gymnasium.farama.org/tutorials/training_agents/blackjack_tutorial/#sphx-glr-tutorials-training-agents-blackjack-tutorial-py)
-gymnasium_breakout.py
-* [Getting Started with OpenAI Gym](https://blog.paperspace.com/getting-started-with-openai-gym/)
-gymnasium_breakout_wrapper.py
-* [Getting Started with OpenAI Gym](https://blog.paperspace.com/getting-started-with-openai-gym/)
-gymnasium_mountaincar.py
-* [Classic Control: Mountain Car](https://gymnasium.farama.org/environments/classic_control/mountain_car/])
-gymnasium_mujoco.py
-* [Training REINFORCE for Mujoco](https://gymnasium.farama.org/tutorials/training_agents/reinforce_invpend_gym_v26/#sphx-glr-tutorials-training-agents-reinforce-invpend-gym-v26-py)
-gymnasium_pendulum.py
-* [Classic Control: Pendulum](https://gymnasium.farama.org/environments/classic_control/pendulum/)
+* gymnasium_atari.py [Getting Started with OpenAI Gym](https://blog.paperspace.com/getting-started-with-openai-gym/)
+* gymnasium_basic.py [Basic Usage](https://gymnasium.farama.org/content/basic_usage/)
+* gymnasium_blackjack.py [Gymnasium Solving Blackjack with Q-Learning Tutorial](https://gymnasium.farama.org/tutorials/training_agents/blackjack_tutorial/#sphx-glr-tutorials-training-agents-blackjack-tutorial-py)
+* gymnasium_breakout.py [Getting Started with OpenAI Gym](https://blog.paperspace.com/getting-started-with-openai-gym/)
+* gymnasium_breakout_wrapper.py [Getting Started with OpenAI Gym](https://blog.paperspace.com/getting-started-with-openai-gym/)
+* gymnasium_mountaincar.py [Classic Control: Mountain Car](https://gymnasium.farama.org/environments/classic_control/mountain_car/])
+* gymnasium_mujoco.py [Training REINFORCE for Mujoco](https://gymnasium.farama.org/tutorials/training_agents/reinforce_invpend_gym_v26/#sphx-glr-tutorials-training-agents-reinforce-invpend-gym-v26-py)
+* gymnasium_pendulum.py [Classic Control: Pendulum](https://gymnasium.farama.org/environments/classic_control/pendulum/)
 
 
