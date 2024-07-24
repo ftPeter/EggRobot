@@ -1,4 +1,30 @@
 # README
+
+# TODO
+* Brainstorm ideas for simple problems
+* Pick physical problem
+** Draw a block diagram for proposed solution
+** Choose ML tool (pytorch)
+** Choose NN architecture
+** Develop dataset
+** Translate to Arduino
+** How to develop Mujoco environment
+** What are the state variables
+* Review the mnist example
+
+---
+
+# Brainstorm of problems for ML
+In order of probable difficulty:
+* Light switch
+* Light switch on for 5 seconds
+* Robot moves forward 5 inches
+* Balancing the 1D EggBot
+* Walking the 2D Legged EggBot
+
+---
+
+# Files in this folder
 ## Gymnasium Series
 Files related to the Gymnasium Tutorials
 gymnasium_atari.py
